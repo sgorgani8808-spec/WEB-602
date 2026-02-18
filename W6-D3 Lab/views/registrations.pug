@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    .registrants-page
+        if registrations.length
+            table.registrants-table
+                tr
+                    th Name
+                    th Email
+                     th Username
+                     th Password (hashed)
+                each registration in registrations
+                    tr
+                        td= registration.name
+                        td= registration.email
+                        td= registration.username
+                        td= registration.password
+        else
+            p No registrations yet :(
