@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  aside#leftside
+  aside#rightside
+
+  #container
+    header
+      span Food Blog
+
+    main
+      aside#photos
+        img(src="/images/chili.jpg", alt="White Chicken Chili", width="180")
+
+      h2 Comments
+
+      section#blogposts
+        .post
+          span.author Brianna
+          |  —
+          span.date February 18, 2025 @ 3:30 pm
+          span.reply REPLY
+          p
+            | Was amazing! My Walmart didn’t have coriander in stock and didn’t have ground cumin...
+
+        .post
+          span.author LINH
+          |  —
+          span.date February 15, 2025 @ 9:46 am
+          span.reply REPLY
+          p
+            | I just made this soup today and it’s so tasty!
+
+    footer
+      | © Copyright FOOD BLOG

@@ -1,0 +1,89 @@
+/* IMPORTS */
+header {
+  background-color: rgb(218, 170, 14);
+  padding: 12px 0;
+}
+header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  padding-left: 30px;
+}
+header nav ul li {
+  color: rgb(255, 255, 255);
+}
+header nav ul li a {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* MIXIN */
+/* GLOBAL */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(255, 255, 255);
+}
+
+/* NEST MAIN */
+main {
+  width: 1350px;
+  min-height: 535px;
+  margin: 40px auto;
+  display: flex;
+  background-color: rgb(218, 170, 14);
+  padding: 25px;
+}
+main #intro-text {
+  width: 45%;
+  background-color: rgb(212, 213, 216);
+  padding: 60px;
+}
+main #intro-text span {
+  font-family: "Sacramento", cursive;
+  font-size: 32px;
+  display: block;
+  margin-bottom: 15px;
+}
+main #intro-text h3 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: rgb(49, 49, 48);
+}
+main #intro-text p {
+  margin-bottom: 25px;
+  color: rgb(49, 49, 48);
+}
+main #intro-text .submit-buttton {
+  background-color: rgb(218, 170, 14);
+  color: rgb(49, 49, 48);
+  border: none;
+  padding: 12px 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+main #intro-image {
+  width: 55%;
+}
+main #intro-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* FOOTER */
+footer {
+  background-color: rgb(218, 170, 14);
+  color: rgb(255, 255, 255);
+  text-align: center;
+  padding: 15px;
+}
+
+/*# sourceMappingURL=styles.css.map */

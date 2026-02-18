@@ -1,0 +1,72 @@
+@import "colors";
+
+/* MIXIN */
+@mixin center-absolute {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* GLOBAL */
+* {
+  color: $white;
+  font-size: 1.2rem;
+  box-sizing: border-box;
+}
+
+/* CONTAINER */
+.container {
+  background-color: $yellow;
+  border: 2px solid #000;
+  display: flex;
+  height: 500px;
+  width: 70%;
+  margin: 2em auto;
+  padding: 1em;
+  justify-content: space-between;
+
+  /* LEFT PANEL */
+  .left {
+    background-color: $dark-green;
+    width: 68%;
+    position: relative;
+
+    p {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      line-height: 1.4;
+    }
+  }
+
+  /* RIGHT PANEL */
+  .right {
+    background-color: $medium-green;
+    width: 28%;
+    position: relative;
+    margin: 1em 0; // 👈 creates the yellow top/bottom gap
+
+    p {
+      position: absolute;
+      top: 35%; // 👈 matches slide spacing
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .button {
+      @include center-absolute;
+      bottom: 1.5em;
+
+      background-color: $yellow;
+      color: #000;
+      border: 2px solid #000;
+      border-radius: 8px;
+      padding: 0.4em 1.5em;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  }
+}

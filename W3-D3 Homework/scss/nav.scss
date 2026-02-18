@@ -1,0 +1,26 @@
+@import "colors";
+
+header {
+  background-color: $gold;
+  padding: 12px 0;
+
+  nav {
+    ul {
+      list-style: none;
+      display: flex;
+      gap: 10px;
+      padding-left: 30px;
+
+      li {
+        color: $white;
+
+        a {
+          color: $white;
+          text-decoration: none;
+          font-weight: bold;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

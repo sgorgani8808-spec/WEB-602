@@ -1,0 +1,81 @@
+/* IMPORTS */
+@import "colors";
+@import "nav";
+
+/* MIXIN */
+@mixin button-style {
+  background-color: $gold;
+  color: $dark-gray;
+  border: none;
+  padding: 12px 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* GLOBAL */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $main-font;
+  background-color: $white;
+}
+
+/* NEST MAIN */
+main {
+  width: 1350px;
+  min-height: 535px;
+  margin: 40px auto;
+  display: flex;
+  background-color: $gold;
+  padding: 25px;
+
+  #intro-text {
+    width: 45%;
+    background-color: $light-gray;
+    padding: 60px;
+
+    span {
+      font-family: $script-font;
+      font-size: 32px;
+      display: block;
+      margin-bottom: 15px;
+    }
+
+    h3 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: $dark-gray;
+    }
+
+    p {
+      margin-bottom: 25px;
+      color: $dark-gray;
+    }
+
+    .submit-buttton {
+      @include button-style;
+    }
+  }
+
+  #intro-image {
+    width: 55%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+/* FOOTER */
+footer {
+  background-color: $gold;
+  color: $white;
+  text-align: center;
+  padding: 15px;
+}

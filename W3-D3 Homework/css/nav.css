@@ -1,0 +1,21 @@
+header {
+  background-color: rgb(218, 170, 14);
+  padding: 12px 0;
+}
+header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  padding-left: 30px;
+}
+header nav ul li {
+  color: rgb(255, 255, 255);
+}
+header nav ul li a {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/*# sourceMappingURL=nav.css.map */
