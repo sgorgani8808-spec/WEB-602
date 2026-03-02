@@ -1,0 +1,29 @@
+$brand: #111;
+.card { border-radius: 14px; }
+.form-control, .btn { border-radius: 10px; }
+body {
+  color: $brand;
+  background: #f6f7f9;
+}
+
+.navbar-brand {
+  letter-spacing: 0.2px;
+}
+
+.card {
+  border-radius: 14px;
+}
+
+.form-control, .form-select {
+  border-radius: 10px;
+  padding: 0.65rem 0.85rem;
+}
+
+.btn {
+  border-radius: 10px;
+}
+
+.alert {
+  border-radius: 12px;
+}
+main { min-height: calc(100vh - 64px); }

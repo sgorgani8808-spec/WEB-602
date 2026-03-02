@@ -1,0 +1,18 @@
+<%- include('../layout', { body: `
+  <div class="card p-4 shadow-sm">
+    <h2 class="h4">${project.title}</h2>
+    <div class="text-muted">${project.location} • ${project.year} • ${project.category}</div>
+    <hr />
+    <p>${project.description}</p>
+    ${project.materials ? `<p class="small text-muted"><strong>Materials:</strong> ${project.materials}</p>` : ''}
+
+    ${currentUser && currentUser.role === 'admin' ? `
+      <div class="d-flex gap-2 mt-3">
+        <a class="btn btn-outline-dark btn-sm" href="/projects/${project._id}/edit">Edit</a>
+        <form method="POST" action="/projects/${project._id}?_method=DELETE" class="m-0">
+          <button class="btn btn-danger btn-sm">Delete</button>
+        </form>
+      </div>
+    ` : ''}
+  </div>
+` }) %>

@@ -1,0 +1,21 @@
+<%- include('../layout', { body: `
+  <div class="card p-4 shadow-sm">
+    <h2 class="h4 mb-3">Edit Project</h2>
+
+    ${errors.length ? `<div class="alert alert-danger">${errors.map(e=>e.msg).join('<br>')}</div>` : ''}
+
+    <form method="POST" action="/projects/${values._id}?_method=PUT">
+      ${formFields(values)}
+      <button class="btn btn-dark">Save</button>
+    </form>
+  </div>
+` }) %>
+
+<% function formFields(v){ %>
+  <div class="mb-3"><label class="form-label">Title</label><input class="form-control" name="title" value="<%= v.title || '' %>"></div>
+  <div class="mb-3"><label class="form-label">Location</label><input class="form-control" name="location" value="<%= v.location || '' %>"></div>
+  <div class="mb-3"><label class="form-label">Year</label><input class="form-control" name="year" value="<%= v.year || '' %>"></div>
+  <div class="mb-3"><label class="form-label">Category</label><input class="form-control" name="category" value="<%= v.category || '' %>"></div>
+  <div class="mb-3"><label class="form-label">Materials</label><input class="form-control" name="materials" value="<%= v.materials || '' %>"></div>
+  <div class="mb-3"><label class="form-label">Description</label><textarea class="form-control" rows="5" name="description"><%= v.description || '' %></textarea></div>
+<% } %>

@@ -1,0 +1,63 @@
+<%- include('../layout', { body: `
+  <div class="card shadow-sm">
+    <div class="card-body p-4">
+      <div class="d-flex align-items-start justify-content-between gap-2 mb-3">
+        <div>
+          <h2 class="h4 mb-1">New Project</h2>
+          <p class="text-muted small mb-0">Add a new architectural entry to the archive.</p>
+        </div>
+      </div>
+
+      ${errors.length ? `
+        <div class="alert alert-danger">
+          <div class="fw-semibold mb-1">Please fix the following:</div>
+          <ul class="mb-0">
+            ${errors.map(e => `<li>${e.msg}</li>`).join('')}
+          </ul>
+        </div>
+      ` : ''}
+
+      <form method="POST" action="/projects">
+        ${formFields(values)}
+        <div class="d-flex gap-2 mt-2">
+          <button class="btn btn-dark">Create</button>
+          <a class="btn btn-outline-secondary" href="/projects">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+` }) %>
+
+<% function formFields(v){ %>
+  <div class="row g-3">
+    <div class="col-12">
+      <label class="form-label">Title</label>
+      <input class="form-control" name="title" value="<%= v.title || '' %>" placeholder="e.g., Retail Prototype - Martinez" />
+    </div>
+
+    <div class="col-12 col-md-6">
+      <label class="form-label">Location</label>
+      <input class="form-control" name="location" value="<%= v.location || '' %>" placeholder="City, State" />
+    </div>
+
+    <div class="col-12 col-md-6">
+      <label class="form-label">Year</label>
+      <input class="form-control" name="year" value="<%= v.year || '' %>" placeholder="2026" />
+    </div>
+
+    <div class="col-12 col-md-6">
+      <label class="form-label">Category</label>
+      <input class="form-control" name="category" value="<%= v.category || '' %>" placeholder="Retail / Residential / Mixed-use" />
+    </div>
+
+    <div class="col-12 col-md-6">
+      <label class="form-label">Materials <span class="text-muted small">(optional)</span></label>
+      <input class="form-control" name="materials" value="<%= v.materials || '' %>" placeholder="Concrete, glass, wood..." />
+    </div>
+
+    <div class="col-12">
+      <label class="form-label">Description</label>
+      <textarea class="form-control" rows="6" name="description" placeholder="Short project summary..."><%= v.description || '' %></textarea>
+    </div>
+  </div>
+<% } %>
