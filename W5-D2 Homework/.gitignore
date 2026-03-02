@@ -1,0 +1,7 @@
+# mac junk
+.DS_Store
+**/.DS_Store
+
+# do not include other projects
+Project 2/
+**/Project 2/
