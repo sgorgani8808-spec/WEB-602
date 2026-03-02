@@ -1,63 +1,127 @@
-<%- include('../layout', { body: `
-  <div class="card shadow-sm">
-    <div class="card-body p-4">
-      <div class="d-flex align-items-start justify-content-between gap-2 mb-3">
-        <div>
-          <h2 class="h4 mb-1">New Project</h2>
-          <p class="text-muted small mb-0">Add a new architectural entry to the archive.</p>
+<%
+  // simple HTML escape helper
+  const esc = (s) =>
+    String(s ?? '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+
+  function formFields(v) {
+    return `
+      <div class="row g-3">
+
+        <div class="col-12">
+          <label class="form-label">Title</label>
+          <input
+            class="form-control"
+            name="title"
+            value="${esc(v.title)}"
+            placeholder="e.g., Retail Prototype - Martinez"
+            autocomplete="off"
+          />
         </div>
+
+        <div class="col-12 col-md-6">
+          <label class="form-label">Location</label>
+          <input
+            class="form-control"
+            name="location"
+            value="${esc(v.location)}"
+            placeholder="City, State"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="col-12 col-md-6">
+          <label class="form-label">Year</label>
+          <input
+            class="form-control"
+            type="number"
+            name="year"
+            value="${esc(v.year)}"
+            placeholder="2026"
+            min="1800"
+            max="2100"
+          />
+          <div class="form-text">Use a 4-digit year (e.g., 2024).</div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <label class="form-label">Category</label>
+          <input
+            class="form-control"
+            name="category"
+            value="${esc(v.category)}"
+            placeholder="Retail / Residential / Mixed-use"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="col-12 col-md-6">
+          <label class="form-label">Materials <span class="text-muted small">(optional)</span></label>
+          <input
+            class="form-control"
+            name="materials"
+            value="${esc(v.materials)}"
+            placeholder="Concrete, glass, wood..."
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="col-12">
+          <label class="form-label">Description</label>
+          <textarea
+            class="form-control"
+            rows="6"
+            name="description"
+            placeholder="Short project summary..."
+          >${esc(v.description)}</textarea>
+          <div class="form-text">A brief summary of scope, design intent, and key constraints.</div>
+        </div>
+
+        <!-- ✅ Image Upload -->
+        <div class="col-12">
+          <label class="form-label">Project Images <span class="text-muted small">(optional)</span></label>
+          <input class="form-control" type="file" name="images" accept="image/*" multiple />
+          <div class="form-text">Upload up to 5 images (JPG/PNG/WEBP). Max 5MB each.</div>
+        </div>
+
+      </div>
+    `;
+  }
+
+  const v = values || {};
+%>
+
+<%- include('../layout', { body: `
+  <div class="card shadow-sm my-4 mx-auto">
+    <div class="card-body p-4 p-md-5">
+
+      <div class="mb-3">
+        <h2 class="h4 mb-1">New Project</h2>
+        <p class="text-muted small mb-0">Add a new architectural entry to the archive.</p>
       </div>
 
-      ${errors.length ? `
+      ${errors && errors.length ? `
         <div class="alert alert-danger">
           <div class="fw-semibold mb-1">Please fix the following:</div>
           <ul class="mb-0">
-            ${errors.map(e => `<li>${e.msg}</li>`).join('')}
+            ${errors.map(e => `<li>${esc(e.msg)}</li>`).join('')}
           </ul>
         </div>
       ` : ''}
 
-      <form method="POST" action="/projects">
-        ${formFields(values)}
-        <div class="d-flex gap-2 mt-2">
-          <button class="btn btn-dark">Create</button>
-          <a class="btn btn-outline-secondary" href="/projects">Cancel</a>
+      <form method="POST" action="/projects" class="mt-3" enctype="multipart/form-data">
+        ${formFields(v)}
+
+        <div class="d-flex flex-column flex-sm-row gap-2 mt-4">
+          <button class="btn btn-dark w-100">Create</button>
+          <a class="btn btn-outline-secondary w-100" href="/projects">Cancel</a>
         </div>
       </form>
+
     </div>
   </div>
 ` }) %>
-
-<% function formFields(v){ %>
-  <div class="row g-3">
-    <div class="col-12">
-      <label class="form-label">Title</label>
-      <input class="form-control" name="title" value="<%= v.title || '' %>" placeholder="e.g., Retail Prototype - Martinez" />
-    </div>
-
-    <div class="col-12 col-md-6">
-      <label class="form-label">Location</label>
-      <input class="form-control" name="location" value="<%= v.location || '' %>" placeholder="City, State" />
-    </div>
-
-    <div class="col-12 col-md-6">
-      <label class="form-label">Year</label>
-      <input class="form-control" name="year" value="<%= v.year || '' %>" placeholder="2026" />
-    </div>
-
-    <div class="col-12 col-md-6">
-      <label class="form-label">Category</label>
-      <input class="form-control" name="category" value="<%= v.category || '' %>" placeholder="Retail / Residential / Mixed-use" />
-    </div>
-
-    <div class="col-12 col-md-6">
-      <label class="form-label">Materials <span class="text-muted small">(optional)</span></label>
-      <input class="form-control" name="materials" value="<%= v.materials || '' %>" placeholder="Concrete, glass, wood..." />
-    </div>
-
-    <div class="col-12">
-      <label class="form-label">Description</label>
-      <textarea class="form-control" rows="6" name="description" placeholder="Short project summary..."><%= v.description || '' %></textarea>
-    </div>
-  </div>
-<% } %>

@@ -2,15 +2,18 @@ const express = require("express");
 const { body } = require("express-validator");
 const projects = require("../controllers/projectController");
 const { requireAuth, requireAdmin } = require("../middleware/auth");
+const upload = require("../middleware/uploads");
 
 const router = express.Router();
 
 router.get("/", requireAuth, projects.list);
 
 router.get("/new", requireAdmin, projects.getNew);
+
 router.post(
   "/",
   requireAdmin,
+  upload.array("images", 5),
   body("title").trim().isLength({ min: 2 }).withMessage("Title is required."),
   body("location").trim().notEmpty().withMessage("Location is required."),
   body("year").isInt({ min: 1800, max: 2100 }).withMessage("Year must be valid."),
@@ -22,9 +25,11 @@ router.post(
 router.get("/:id", requireAuth, projects.detail);
 
 router.get("/:id/edit", requireAdmin, projects.getEdit);
+
 router.put(
   "/:id",
   requireAdmin,
+  upload.array("images", 5),
   body("title").trim().isLength({ min: 2 }).withMessage("Title is required."),
   body("location").trim().notEmpty().withMessage("Location is required."),
   body("year").isInt({ min: 1800, max: 2100 }).withMessage("Year must be valid."),

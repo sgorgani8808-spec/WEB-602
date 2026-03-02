@@ -1,9 +1,9 @@
-const express = require("express");
+require("dotenv").config();
 const path = require("path");
-const helmet = require("helmet");
-const morgan = require("morgan");
+const express = require("express");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
+const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 
 const authRoutes = require("./routes/authRoutes");
@@ -11,45 +11,41 @@ const projectRoutes = require("./routes/projectRoutes");
 
 const app = express();
 
+// DB
+mongoose.connect(process.env.MONGO_URI || "mongodb://127.0.0.1:27017/archive");
+
+// View engine
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-app.use(helmet());
-app.use(morgan("dev"));
+// Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride("_method"));
-
 app.use(express.static(path.join(__dirname, "public")));
 
+// Session
 app.use(
   session({
     secret: process.env.SESSION_SECRET || "dev_secret",
     resave: false,
     saveUninitialized: false,
-    cookie: {
-      httpOnly: true,
-      sameSite: "lax",
-      secure: process.env.NODE_ENV === "production"
-    },
     store: MongoStore.create({
-      mongoUrl: process.env.MONGODB_URI
-    })
+      mongoUrl: process.env.MONGO_URI || "mongodb://127.0.0.1:27017/archive",
+    }),
+    cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 } // 7 days
   })
 );
 
-// Make session user available in views
+// Make currentUser available in ALL views
 app.use((req, res, next) => {
   res.locals.currentUser = req.session.user || null;
   next();
 });
 
-app.get("/", (req, res) => res.render("index"));
-
+// Routes
+app.get("/", (req, res) => res.render("home"));
 app.use("/auth", authRoutes);
 app.use("/projects", projectRoutes);
-
-// 404
-app.use((req, res) => res.status(404).send("Not Found"));
 
 module.exports = app;

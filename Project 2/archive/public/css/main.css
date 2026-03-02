@@ -1,27 +1,129 @@
+html, body {
+  overflow-x: hidden;
+}
+
 body {
   color: #111;
   background: #f6f7f9;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+main {
+  min-height: calc(100vh - 64px);
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+}
+
+.navbar {
+  background: #fff;
+  border-bottom: 1px solid #e9ecef;
 }
 
 .navbar-brand {
-  letter-spacing: 0.2px;
+  letter-spacing: 0.3px;
+  font-weight: 600;
+}
+
+.brand-mark {
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .card {
-  border-radius: 14px;
+  border-radius: 16px;
+  border: 1px solid #e9ecef;
+  background: #ffffff;
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+.card:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
 }
 
-.form-control, .form-select {
-  border-radius: 10px;
+@media (max-width: 576px) {
+  .card {
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+}
+.form-label {
+  font-weight: 500;
+  margin-bottom: 0.35rem;
+}
+
+.form-control,
+.form-select {
+  border-radius: 12px;
   padding: 0.65rem 0.85rem;
+  border: 1px solid #e9ecef;
+  transition: border 0.15s ease, box-shadow 0.15s ease;
+}
+.form-control:focus,
+.form-select:focus {
+  border-color: #111;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
+}
+
+textarea.form-control {
+  resize: vertical;
 }
 
 .btn {
-  border-radius: 10px;
+  border-radius: 12px;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  transition: all 0.15s ease;
+}
+
+.btn-dark {
+  background-color: #111;
+  border-color: #111;
+}
+.btn-dark:hover {
+  background-color: rgb(4.25, 4.25, 4.25);
+  border-color: rgb(4.25, 4.25, 4.25);
+}
+
+.btn-outline-secondary {
+  border-color: #e9ecef;
+}
+.btn-outline-secondary:hover {
+  background: #f1f3f5;
 }
 
 .alert {
-  border-radius: 12px;
+  border-radius: 14px;
+  font-size: 0.9rem;
+}
+
+.alert-danger {
+  background-color: #fde8e8;
+  border-color: #f5c2c7;
+  color: #842029;
+}
+
+.text-muted {
+  color: #6c757d !important;
+}
+
+h2, h3, h4 {
+  letter-spacing: 0.2px;
+}
+
+.shadow-sm {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04) !important;
+}
+
+.page-wrap {
+  width: 100%;
+}
+
+@media (max-width: 576px) {
+  .container-fluid {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
