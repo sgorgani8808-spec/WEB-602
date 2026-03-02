@@ -1,23 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Midule 4 Week 1 Assignment</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.11/vue.js"></script>
-</head>
-<body>
-    
-<div class="main-wrapper">
-  
-    <div class="header">
-        <h1>Fresh Food To Go</h1>
-    </div>
-    <div id="vue">
-       
-    </div>
+  <title>Module 4 Week 1 Assignment</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-</div>
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.11/vue.js"></script>
+</head>
+
+<body>
+  <div class="main-wrapper">
+
+    <header class="header">
+      <h1>Fresh Food To Go</h1>
+    </header>
+
+    <main id="vue" class="content">
+      <h2 class="section-title">Selections</h2>
+
+      <section class="grid">
+        <article class="card" v-for="item in items">
+          <div class="thumb">
+            <img :src="item.img" :alt="item.name" />
+          </div>
+
+          <h3 class="name">{{ item.name }}</h3>
+          <p class="desc">{{ item.desc }}</p>
+
+          <button class="btn" v-on:click="addToCart(item)">
+            Add to Cart
+          </button>
+        </article>
+      </section>
+
+      <!-- optional tiny feedback message -->
+      <p class="toast" v-if="toast">{{ toast }}</p>
+    </main>
+
+  </div>
+
+  <script>
+    const v1 = new Vue({
+      el: "#vue",
+      data: {
+        toast: "",
+        items: [
+          {
+            name: "Pasta",
+            desc: "A classic Italian favorite",
+            img: "https://upload.wikimedia.org/wikipedia/commons/f/f0/Spaghetti_aglio%2C_olio_e_peperoncino_%2816284859030%29.jpg"
+          },
+          {
+            name: "Red Crab",
+            desc: "Fresh, zesty and bright",
+            img: "https://upload.wikimedia.org/wikipedia/commons/6/6a/Jacques_Lameloise%2C_escab%C3%A8che_d%27%C3%A9crevisses_sur_gaspacho_d%27asperge_et_cresson.jpg"
+          },
+          {
+            name: "Breakfast Special",
+            desc: "Perfect start to your day",
+            img: "https://upload.wikimedia.org/wikipedia/commons/0/02/Breakfast_at_Irving_Street_Kitchen.jpg"
+          },
+          {
+            name: "Sea Shells Mix",
+            desc: "Seafood pasta with flavor",
+            img: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Seafood_linguine.jpg"
+          },
+          {
+            name: "Ultimate Kebab",
+            desc: "The best from Middle East",
+            img: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Various_kebab.jpg"
+          },
+          {
+            name: "Chicken Steak",
+            desc: "Grilled to perfection",
+            img: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Chicken_steak_with_pepper_sauce.jpg"
+          },
+          {
+            name: "Filet Mignon",
+            desc: "Juicy and tender cut",
+            img: "https://upload.wikimedia.org/wikipedia/commons/1/1a/.Filet_mignon_et_foie_gras_au_muscat_de_Beaumes-de-Venise%2C_Pastis_Bistro%2C_Palo_Alto.jpg"
+          },
+          {
+            name: "Bistro Brunch",
+            desc: "A taste of Australia",
+            img: "https://upload.wikimedia.org/wikipedia/commons/4/48/Dishes_at_Bistro_C%2C_Hastings_Street%2C_Noosa_Heads%2C_Queensland_02.jpg"
+          },
+          {
+            name: "California Crepe",
+            desc: "Stuffed with grilled shrimp",
+            img: "https://upload.wikimedia.org/wikipedia/commons/3/32/2011-04-09_17.02.43%2C_Whispers_Cafe_and_Creperie%2C_Belmont%2C_CA_%285982715933%29.jpg"
+          },
+          {
+            name: "Top Burger",
+            desc: "A tasty handcrafted classic",
+            img: "https://upload.wikimedia.org/wikipedia/commons/d/d4/Hamburguesa_de_carne.jpg"
+          },
+          {
+            name: "Chicken Garlic Pizza",
+            desc: "Our specialty pizza",
+            img: "https://upload.wikimedia.org/wikipedia/commons/3/33/Round_Table_chicken_%26_garlic_pizza.JPG"
+          },
+          {
+            name: "Wok away healthy",
+            desc: "Healthy bowl of fresh veggies",
+            img: "https://upload.wikimedia.org/wikipedia/commons/d/d2/Stir_Fry_Wok_-_Free_For_Commercial_Use_-_FFCU_%2827159057131%29.jpg"
+          }
+        ]
+      },
+      methods: {
+        addToCart: function(item) {
+          this.toast = item.name + " added to cart!";
+          var self = this;
+          setTimeout(function() {
+            self.toast = "";
+          }, 1200);
+        }
+      }
+    });
+  </script>
 </body>
 </html>

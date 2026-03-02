@@ -1,12 +1,4 @@
 @import url(https://fonts.googleapis.com/css?family=Bitter:400,400italic,700);
-
-$max-width: 80em;
-$dark: rgb(22, 34, 42);
-$mid: rgb(58, 96, 115);
-$white: rgb(255,255,255);
-$shadow1: rgba(0,0,0,0.24);
-$shadow2: rgba(0,0,0,0.5);
-
 * {
   margin: 0;
   padding: 0;
@@ -15,25 +7,24 @@ $shadow2: rgba(0,0,0,0.5);
 }
 
 body {
-  background: $white;
+  background: rgb(255, 255, 255);
 }
 
 .main-wrapper {
-  max-width: $max-width;
+  max-width: 80em;
   margin: 0 auto;
 }
 
 .header {
-  background: linear-gradient(90deg, $mid, $dark);
+  background: linear-gradient(90deg, rgb(58, 96, 115), rgb(22, 34, 42));
   padding: 3.25rem 1rem;
   text-align: center;
-
-  h1 {
-    color: $white;
-    font-weight: 700;
-    font-size: 1.6rem;
-    letter-spacing: 0.5px;
-  }
+}
+.header h1 {
+  color: rgb(255, 255, 255);
+  font-weight: 700;
+  font-size: 1.6rem;
+  letter-spacing: 0.5px;
 }
 
 .content {
@@ -43,7 +34,7 @@ body {
 .section-title {
   text-align: center;
   font-size: 1rem;
-  color: rgb(40,40,40);
+  color: rgb(40, 40, 40);
   margin: 0.25rem 0 1rem;
   font-weight: 700;
 }
@@ -60,9 +51,9 @@ body {
 .card {
   width: 170px;
   text-align: center;
-  background: $white;
-  border: 1px solid rgba(0,0,0,0.08);
-  box-shadow: 0 6px 18px $shadow1;
+  background: rgb(255, 255, 255);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.24);
   padding: 0.5rem 0.5rem 0.75rem;
 }
 
@@ -70,26 +61,25 @@ body {
   width: 100%;
   height: 115px;
   overflow: hidden;
-  background: rgba(0,0,0,0.06);
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
+  background: rgba(0, 0, 0, 0.06);
+}
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .name {
   margin-top: 0.45rem;
   font-size: 0.85rem;
   font-weight: 700;
-  color: rgb(25,25,25);
+  color: rgb(25, 25, 25);
 }
 
 .desc {
   font-size: 0.65rem;
-  color: rgba(0,0,0,0.65);
+  color: rgba(0, 0, 0, 0.65);
   margin: 0.15rem 0 0.5rem;
   min-height: 28px;
 }
@@ -97,18 +87,19 @@ body {
 .btn {
   font-size: 0.6rem;
   padding: 0.28rem 0.5rem;
-  background: $white;
-  border: 1px solid rgba(0,0,0,0.35);
+  background: rgb(255, 255, 255);
+  border: 1px solid rgba(0, 0, 0, 0.35);
   cursor: pointer;
-
-  &:hover {
-    box-shadow: 0 3px 10px $shadow1;
-  }
+}
+.btn:hover {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.24);
 }
 
 .toast {
   text-align: center;
   margin-top: 1.25rem;
   font-size: 0.85rem;
-  color: rgba(0,0,0,0.7);
+  color: rgba(0, 0, 0, 0.7);
 }
+
+/*# sourceMappingURL=styles.css.map */
